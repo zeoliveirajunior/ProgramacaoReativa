@@ -1,0 +1,94 @@
+<div class="div-main">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col-sm">
+            <div class="alert alert-primary" role="alert">
+              Exemplo de um textfield sem debounce
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Digite um filme</label>
+              <input
+                type="email"
+                (input)="OnChangeSemDebounce($event.target.value)"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Digite um filme"
+              />
+              <span class="badge badge-secondary">Requisições: {{RequisicoesSemDebounce}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="alert alert-success" role="alert">
+              Debounce utilizando programação imperativa
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Digite um filme</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Digite um filme"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="alert alert-danger" role="alert">
+              Debounce utilizando programação reativa
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Digite um filme</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Digite um filme"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="progress" *ngIf="Pesquisando;else TemplateLista">
+          <div
+            class="progress-bar progress-bar-striped progress-bar-animated"
+            role="progressbar"
+            aria-valuenow="100"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style="width: 100%"
+          ></div>
+        </div>
+        <ng-template #TemplateLista>
+            <div class="jumbotron">
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let Filme of Filmes">
+                    {{ Filme }}
+                  </li>
+                </ul>
+              </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
