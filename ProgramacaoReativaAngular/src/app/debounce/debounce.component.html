@@ -21,7 +21,7 @@
                 aria-describedby="emailHelp"
                 placeholder="Digite um filme"
               />
-              <span class="badge badge-secondary">Requisições: {{RequisicoesSemDebounce}}</span>
+              <span class="badge badge-primary">Requisições: {{RequisicoesSemDebounce}}</span>
             </div>
           </div>
         </div>
@@ -38,12 +38,14 @@
               <label for="exampleInputEmail1">Digite um filme</label>
               <input
                 type="email"
+                (input)="OnChangeDebounce($event.target.value)"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Digite um filme"
               />
             </div>
+            <span class="badge badge-success">Requisições: {{RequisicoesDebounce}}</span>
           </div>
         </div>
         <div class="row">
@@ -58,12 +60,14 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Digite um filme</label>
               <input
+                #InputDebounce
                 type="email"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Digite um filme"
               />
+              <span class="badge badge-danger">Requisições: {{RequisicoesReativa}}</span>
             </div>
           </div>
         </div>
