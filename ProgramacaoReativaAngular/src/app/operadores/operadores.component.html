@@ -1,0 +1,234 @@
+<div class="div-main">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Map</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Transforma cada valor emitido pelo observable em outro valor
+              utilizando uma função de transformação
+            </h6>
+            <div class="row align-items-end justify-content-center">
+              <div class="col-4">
+                <label for="exampleInputEmail1"
+                  >Informe um numero para calcular o quadrado</label
+                >
+                <input
+                  #exampleMap
+                  type="email"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="col-4">
+                <span class="badge badge-primary" *ngIf="OperadorMap"
+                  >Quadrado do numero: {{ OperadorMap | async }}</span
+                >
+              </div>
+            </div>
+            <div class="row align-items-end justify-content-center">
+              <div class="col">
+                <img src="assets/codes/operadormap.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Filter e take until</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Filter: Filtra os valores emitidos no tempo com base em um
+              predicado<br />
+              Take until: Completa o observable quando um valor é emitido por um
+              segundo observable
+            </h6>
+            <div class="row align-items-end justify-content-center">
+              <button
+                *ngIf="!OperadorFilter"
+                class="btn btn-outline-success"
+                (click)="IniciarExemploFilter()"
+              >
+                contar apenas os pares
+              </button>
+              <button
+                *ngIf="OperadorFilter"
+                class="btn btn-outline-danger"
+                (click)="PararExemploFilter()"
+              >
+                Parar de contar
+              </button>
+              <span class="badge badge-primary" *ngIf="OperadorFilter"
+                >{{ OperadorFilter | async }} é par</span
+              >
+            </div>
+            <div class="row align-items-end justify-content-center">
+              <div class="col">
+                <img src="assets/codes/operadorfilter.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Debounce e distinct</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Debounce: Emite o valor do observable após um determinado periodo
+              de tempo caso não ocorra nenhuma nova emissão nesse mesmo
+              intervalo de tempo.
+              <br />Distinct: Emite o valor apenas se o ultimo valor emitido
+              pela fonte for diferente da saida
+            </h6>
+            <div class="row align-items-end justify-content-center">
+              <div class="col-4">
+                <label>Pesquisa de atores</label>
+                <input
+                  #exampleAtores
+                  type="email"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="col-4">
+                <span class="badge badge-primary"
+                  >Valor do ator a ser pesquisado:
+                  {{ OperadorDebounce | async }}</span
+                >
+                <span class="badge badge-success" *ngIf="Requests > 0"
+                  >Numero de requests: {{ Requests }}</span
+                >
+              </div>
+            </div>
+            <div class="row align-items-end justify-content-center">
+              <div class="col">
+                <img src="assets/codes/operadordebounce.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">MergeMap</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              MergeMap: Transforma 2 streams em um unico observable, podendo se
+              utilizar dos valores previamentes emitidos para emitir um novo
+              valor baseado no stream interno<br />
+              <br />
+            </h6>
+            <div class="row align-items-end justify-content-center">
+              <div class="col-4">
+                <label>Nome</label>
+                <input
+                  #exampleCampo1
+                  type="email"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="col-4">
+                <label>Sobrenome</label>
+                <input
+                  #exampleCampo2
+                  type="email"
+                  class="form-control"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="col-4">
+                <span class="badge badge-primary"
+                  >Nome da pessoa: {{ OperadorMerge | async }}</span
+                >
+              </div>
+            </div>
+            <div class="row align-items-end justify-content-center">
+              <div class="col">
+                <img src="assets/codes/operadormerge.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ConcatMap</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                ConcatMap: Transforma 2 streams em um unico stream, porem o
+                observable interno só é ativado quando o observable superior
+                emite um valor<br />
+                <br />
+              </h6>
+              <div class="row align-items-end justify-content-center">
+                <button
+                  *ngIf="!OperadorConcatMap; else btncancelar"
+                  class="btn btn-outline-success"
+                  (click)="IniciarExemploConcat()"
+                >
+                  Iniciar concatMap
+                </button>
+                <ng-template #btncancelar>
+                  <button
+                    class="btn btn-outline-danger"
+                    (click)="PararExemploConcat()"
+                  >
+                    Cancelar concatMap
+                  </button>
+                  <span class="badge badge-success"
+                    >Contador: {{ OperadorConcatMap | async }}</span
+                  >
+                </ng-template>
+              </div>
+              <div class="row align-items-end justify-content-center">
+                <div class="col">
+                  <img src="assets/codes/operadorconcatmap.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">SwitchMap</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              SwitchMap: Cancela(troca) os observables internos quando um novo valor é emitido pelo observable pai<br />
+              <br />
+            </h6>
+            <div class="row align-items-end justify-content-center">
+              <button
+                #btnSwithMap
+                class="btn btn-outline-success"
+              >
+                Iniciar contagem
+              </button>
+              <span class="badge badge-success" *ngIf="ContadorSwitchMap != null"
+              >Contador: {{ ContadorSwitchMap }}</span
+            >
+            </div>
+            <div class="row align-items-end justify-content-center">
+              <div class="col">
+                <img src="assets/codes/operadorswitchmap.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

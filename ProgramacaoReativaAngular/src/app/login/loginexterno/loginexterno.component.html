@@ -1,0 +1,10 @@
+<div role="alert" [ngClass]="{'alert': true, 'alert-danger' : !(Login.IsLogged | async), 'alert-primary' : (Login.IsLogged | async)}">
+    Monitorando o status do login: {{(Login.IsLogged | async) ? "Autenticado. Iniciando novas tarefas" : "Não autenticado"}}
+    <button
+        *ngIf="Login.IsLogged | async"
+          class="btn btn-outline-danger"
+          (click)="Logoff()"
+        >
+          logoff
+        </button>
+</div>

@@ -1,23 +1,14 @@
-import { MoviesService } from "./../movies.service";
 import {
-  Component,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  NgZone,
   AfterViewInit,
-  ViewChild,
-  ElementRef
+  Component,
+  ElementRef,
+  NgZone,
+  OnInit,
+  ViewChild
 } from "@angular/core";
-import { of, throwError, fromEvent, interval } from "rxjs";
-import {
-  tap,
-  catchError,
-  map,
-  debounce,
-  concatMap,
-  switchMap
-} from "rxjs/operators";
+import { fromEvent, interval, throwError } from "rxjs";
+import { catchError, debounce, map, switchMap, tap } from "rxjs/operators";
+import { MoviesService } from "./../movies.service";
 
 @Component({
   selector: "app-debounce",
@@ -78,7 +69,6 @@ export class DebounceComponent implements OnInit, AfterViewInit {
     }, this.TempoDebounce);
   }
 
-
   ngOnInit() {}
 
   ngAfterViewInit(): void {
@@ -86,25 +76,8 @@ export class DebounceComponent implements OnInit, AfterViewInit {
       /**
        * Implementação utilizando programação reativa
        */
-      fromEvent(this.InputDebounce.nativeElement, "input")
-        .pipe(
-          /* Map para transformar o evento, pegar o target e enviar o valor  */
-          map((Evento: any) => {
-            if (!Evento.target.value) {
-              this.Zone.run(() => (this.Filmes = null));
-            }
-            return Evento.target.value;
-          }),
-          /* cria um debounce a cada 1 segundo */
-          debounce(() => interval(this.TempoDebounce)),
-          /* switch map cancela o ultimo observable em execução */
-          switchMap(Valor => this.RecuperarFilmes(Valor))
-        )
-        .subscribe(Valor =>
-          this.Zone.run(() => {
-            this.RequisicoesReativa++;
-          })
-        );
+      fromEvent(this.InputDebounce.nativeElement, "input").subscribe((Evento: any) => console.log(Evento.target.value));
+
     }
   }
 

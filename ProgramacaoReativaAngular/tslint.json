@@ -15,6 +15,7 @@
       "app",
       "camelCase"
     ],
+    "curly": [false, "ignore-same-line"],
     "component-selector": [
       true,
       "element",
@@ -54,11 +55,10 @@
     ],
     "no-empty": false,
     "no-inferrable-types": [
-      true,
-      "ignore-params"
+      false
     ],
     "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
+    "no-redundant-jsdoc": false ,
     "no-switch-case-fall-through": true,
     "no-use-before-declare": true,
     "no-var-requires": false,
@@ -70,7 +70,7 @@
     "ordered-imports": false,
     "quotemark": [
       true,
-      "single"
+      "double"
     ],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
