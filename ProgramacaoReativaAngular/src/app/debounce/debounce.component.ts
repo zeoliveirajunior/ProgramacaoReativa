@@ -76,7 +76,17 @@ export class DebounceComponent implements OnInit, AfterViewInit {
       /**
        * Implementação utilizando programação reativa
        */
-      fromEvent(this.InputDebounce.nativeElement, "input").subscribe((Evento: any) => console.log(Evento.target.value));
+      fromEvent(this.InputDebounce.nativeElement, "input").pipe(
+        map((Evento: any) => Evento.target.value),
+        debounce(() => interval(this.TempoDebounce)),
+        switchMap((Valor) => {
+          return this.RecuperarFilmes(Valor);
+        })
+      ).subscribe(() => {
+        this.Zone.run(() => {
+          this.RequisicoesReativa++;
+        });
+      });
 
     }
   }
